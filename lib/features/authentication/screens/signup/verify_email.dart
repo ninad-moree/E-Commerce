@@ -1,12 +1,13 @@
-import 'package:e_commerce/features/authentication/screens/login/login.dart';
-import 'package:e_commerce/utils/constants/image_strings.dart';
-import 'package:e_commerce/utils/constants/text_strings.dart';
-import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../common/widgets/success_screen/success_screen.dart';
+import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/constants/text_strings.dart';
+import '../../../../utils/helpers/helper_functions.dart';
+import '../login/login.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({super.key});
@@ -65,7 +66,14 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(
+                    () => SuccessScreen(
+                      image: TImages.staticSuccessIllustration,
+                      title: TTexts.yourAccountCreatedTitle,
+                      subTitle: TTexts.yourAccountCreatedSubTitle,
+                      onPressed: () => Get.to(() => const LoginScreen()),
+                    ),
+                  ),
                   child: const Text(TTexts.tContinue),
                 ),
               ),

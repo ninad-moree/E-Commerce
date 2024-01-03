@@ -1,4 +1,3 @@
-import 'package:e_commerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -6,6 +5,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../verify_email.dart';
 import 'terms_and_conditions_checkbox.dart';
 
 class SignupForm extends StatelessWidget {
