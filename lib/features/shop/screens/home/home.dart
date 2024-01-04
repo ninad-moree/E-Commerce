@@ -5,9 +5,11 @@ import '../../../../common/widgets/custom_shapes/container/primary_header_contai
 import '../../../../common/widgets/custom_shapes/container/search_bar_container.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import 'widgets/home_appbar.dart';
 import 'widgets/home_categories.dart';
+import 'widgets/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,6 +20,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // ************** HEADER ************** //
             PrimaryHeaderContainer(
               child: Column(
                 children: [
@@ -53,6 +56,18 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
+
+            // ************** BODY ************** //
+            Padding(
+              padding: EdgeInsets.all(TSizes.defaultSpace),
+              child: PromoSlider(
+                banners: [
+                  TImages.promoBanner1,
+                  TImages.promoBanner2,
+                  TImages.promoBanner3,
                 ],
               ),
             ),
