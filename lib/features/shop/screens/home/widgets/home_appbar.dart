@@ -28,13 +28,13 @@ class HomeAppBar extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!
-                .apply(color: TColors.white),
+                .apply(color: TColors.dark),
           ),
         ],
       ),
       actions: [
         CartCounterIcon(
-          iconColor: TColors.white,
+          iconColor: TColors.dark,
           onPressed: () {},
         ),
       ],
