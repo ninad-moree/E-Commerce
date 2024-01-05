@@ -9,6 +9,7 @@ import '../../../styles/shadow_styles.dart';
 import '../../custom_shapes/container/rounded_container.dart';
 import '../../icons/circular_icon.dart';
 import '../../images/rounded_image.dart';
+import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 
 class ProductCardVertical extends StatelessWidget {
@@ -41,6 +42,7 @@ class ProductCardVertical extends StatelessWidget {
                   const RoundedImage(
                     imageUrl: TImages.productImage1,
                     applyImageRadius: true,
+                    // width: 180,
                   ),
 
                   // SALE TAG
@@ -118,14 +120,9 @@ class ProductCardVertical extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       //PRICE
-                      Text(
-                        '\$35.5',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
+                      const ProductPriceText(price: '35'),
 
-                      //BUTTON
+                      // ADD TO CART BUTTON
                       Container(
                         decoration: const BoxDecoration(
                           color: TColors.dark,
