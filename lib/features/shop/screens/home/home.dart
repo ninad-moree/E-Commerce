@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/custom_shapes/container/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/container/search_bar_container.dart';
+import '../../../../common/widgets/products/product_card/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -63,11 +64,21 @@ class HomeScreen extends StatelessWidget {
             // ************** BODY ************** //
             Padding(
               padding: EdgeInsets.all(TSizes.defaultSpace),
-              child: PromoSlider(
-                banners: [
-                  TImages.promoBanner1,
-                  TImages.promoBanner2,
-                  TImages.promoBanner3,
+              child: Column(
+                children: [
+                  // PROMO SLIDER
+                  PromoSlider(
+                    banners: [
+                      TImages.promoBanner1,
+                      TImages.promoBanner2,
+                      TImages.promoBanner3,
+                    ],
+                  ),
+
+                  SizedBox(height: TSizes.spaceBtwSections),
+
+                  // POPULAR PRODUCTS
+                  ProductCardVertical(),
                 ],
               ),
             ),
