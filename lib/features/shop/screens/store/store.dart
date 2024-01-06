@@ -1,17 +1,17 @@
-import 'package:e_commerce/common/widgets/custom_shapes/container/rounded_container.dart';
-import 'package:e_commerce/common/widgets/custom_shapes/container/search_bar_container.dart';
-import 'package:e_commerce/common/widgets/layouts/grid_layout.dart';
-import 'package:e_commerce/common/widgets/texts/section_heading.dart';
-import 'package:e_commerce/utils/constants/enums.dart';
-import 'package:e_commerce/utils/constants/image_strings.dart';
-import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
+import '../../../../common/widgets/custom_shapes/container/rounded_container.dart';
+import '../../../../common/widgets/custom_shapes/container/search_bar_container.dart';
 import '../../../../common/widgets/images/circular_image.dart';
+import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../common/widgets/texts/brand_title_text_with_verified_icon.dart';
+import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/enums.dart';
+import '../../../../utils/constants/image_strings.dart';
+import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 
 class StoreScreen extends StatelessWidget {
