@@ -9,6 +9,7 @@ import '../../../styles/shadow_styles.dart';
 import '../../custom_shapes/container/rounded_container.dart';
 import '../../icons/circular_icon.dart';
 import '../../images/rounded_image.dart';
+import '../../texts/brand_title_text_with_verified_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 
@@ -81,36 +82,21 @@ class ProductCardVertical extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwItems / 2),
 
             // DETAILS
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // PRODUCT TITLE
-                  const ProductTitleText(
+                  ProductTitleText(
                     title: 'Green Nike Air Shoes',
                     smallSize: true,
                   ),
 
-                  const SizedBox(height: TSizes.spaceBtwItems / 2),
+                  SizedBox(height: TSizes.spaceBtwItems / 2),
 
                   //BRAND TEXT
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(width: TSizes.xs),
-                      const Icon(
-                        Iconsax.verify5,
-                        color: TColors.primary,
-                        size: TSizes.iconXs,
-                      ),
-                    ],
-                  ),
+                  BrandTitleTextWithVerifiedIcon(title: 'Nike'),
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -9,10 +10,11 @@ class SearchContainer extends StatelessWidget {
   const SearchContainer({
     super.key,
     required this.text,
-    this.icon,
+    this.icon = Iconsax.search_normal,
     this.showBackground = true,
     this.showBorder = true,
     this.onTap,
+    this.padding = const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
   });
 
   final String text;
@@ -20,6 +22,7 @@ class SearchContainer extends StatelessWidget {
   final bool showBackground;
   final bool showBorder;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class SearchContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+        padding: padding,
         child: Container(
           width: TDeviceUtils.getScreenWidth(context),
           padding: const EdgeInsets.all(TSizes.md),
@@ -45,15 +48,14 @@ class SearchContainer extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: TColors.darkGrey,
+                color: darkMode ? TColors.white : TColors.darkerGrey,
               ),
               const SizedBox(width: TSizes.spaceBtwItems),
               Text(
                 text,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: TColors.darkGrey),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: darkMode ? TColors.white : TColors.darkerGrey,
+                    ),
               ),
             ],
           ),
