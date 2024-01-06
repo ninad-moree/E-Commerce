@@ -9,6 +9,7 @@ import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 import 'widgets/home_appbar.dart';
 import 'widgets/home_categories.dart';
 import 'widgets/promo_slider.dart';
@@ -18,43 +19,45 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final darkMode = THelperFunctions.isDarkMode(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             // ************** HEADER ************** //
-            const PrimaryHeaderContainer(
+            PrimaryHeaderContainer(
               child: Column(
                 children: [
                   // APPBAR
-                  HomeAppBar(),
+                  const HomeAppBar(),
 
-                  SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
                   // SEARCHBAR
-                  SearchContainer(
+                  const SearchContainer(
                     text: 'Search in Store',
                     icon: Iconsax.search_normal,
                   ),
 
-                  SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
                   // CATEGORIES
                   Padding(
-                    padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                    padding: const EdgeInsets.only(left: TSizes.defaultSpace),
                     child: Column(
                       children: [
                         // HEADING
                         SectionHeading(
                           title: 'Popular Categories',
                           showActionButton: false,
-                          textColor: TColors.dark,
+                          textColor: darkMode ? TColors.white : TColors.black,
                         ),
 
-                        SizedBox(height: TSizes.spaceBtwItems),
+                        const SizedBox(height: TSizes.spaceBtwItems),
 
                         // CATEGORIES
-                        HomeCategories(),
+                        const HomeCategories(),
                       ],
                     ),
                   ),

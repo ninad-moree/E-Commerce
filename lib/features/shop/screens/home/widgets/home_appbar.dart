@@ -1,3 +1,4 @@
+import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
@@ -12,6 +13,8 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final darkMode = THelperFunctions.isDarkMode(context);
+
     return CustomAppBar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,20 +24,20 @@ class HomeAppBar extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .labelMedium!
-                .apply(color: TColors.grey),
+                .apply(color: darkMode ? TColors.white : TColors.black),
           ),
           Text(
             TTexts.homeAppbarSubTitle,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!
-                .apply(color: TColors.dark),
+                .apply(color: darkMode ? TColors.white : TColors.black),
           ),
         ],
       ),
       actions: [
         CartCounterIcon(
-          iconColor: TColors.dark,
+          iconColor: darkMode ? TColors.white : TColors.black,
           onPressed: () {},
         ),
       ],
