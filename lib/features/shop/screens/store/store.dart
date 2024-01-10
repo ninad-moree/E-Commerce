@@ -1,8 +1,8 @@
-import 'package:e_commerce/common/widgets/appbar/tabbar.dart';
-import 'package:e_commerce/features/shop/screens/store/widget/category_tab.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
+import '../../../../common/widgets/appbar/tabbar.dart';
+import '../../../../common/widgets/brands/brand_card.dart';
 import '../../../../common/widgets/custom_shapes/container/search_bar_container.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
@@ -10,7 +10,7 @@ import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../../../../common/widgets/brands/brand_card.dart';
+import 'widget/category_tab.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});

@@ -1,7 +1,7 @@
-import 'package:e_commerce/utils/constants/colors.dart';
-import 'package:e_commerce/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/constants/colors.dart';
+import '../../../utils/device/device_utility.dart';
 import '../../../utils/helpers/helper_functions.dart';
 
 class TabsBar extends StatelessWidget implements PreferredSizeWidget {
