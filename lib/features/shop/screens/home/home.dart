@@ -58,12 +58,16 @@ class HomeScreen extends StatelessWidget {
 
                         // CATEGORIES
                         const HomeCategories(),
+
+                        const SizedBox(height: TSizes.spaceBtwSections),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+
+            const SizedBox(height: TSizes.spaceBtwSections),
 
             // ************** BODY ************** //
             Padding(
