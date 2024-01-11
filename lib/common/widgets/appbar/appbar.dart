@@ -3,8 +3,10 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/device/device_utility.dart';
+import '../../../utils/helpers/helper_functions.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -31,7 +33,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: showBackArrow
             ? IconButton(
                 onPressed: () => Get.back(),
-                icon: const Icon(Iconsax.arrow_left),
+                icon: Icon(
+                  Iconsax.arrow_left,
+                  color: THelperFunctions.isDarkMode(context)
+                      ? TColors.white
+                      : TColors.darkerGrey,
+                ),
               )
             : leadingIcon != null
                 ? IconButton(
