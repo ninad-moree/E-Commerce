@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Iconsax.arrow_left,
                   color: THelperFunctions.isDarkMode(context)
                       ? TColors.white
-                      : TColors.darkerGrey,
+                      : TColors.dark,
                 ),
               )
             : leadingIcon != null
