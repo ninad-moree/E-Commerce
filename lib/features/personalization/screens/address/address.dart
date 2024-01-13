@@ -1,12 +1,13 @@
-import 'package:e_commerce/common/widgets/appbar/appbar.dart';
-import 'package:e_commerce/features/personalization/screens/address/add_new_address.dart';
-import 'package:e_commerce/features/personalization/screens/address/widget/single_address.dart';
-import 'package:e_commerce/utils/constants/colors.dart';
-import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../../../common/widgets/appbar/appbar.dart';
+import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/sizes.dart';
+import 'add_new_address.dart';
+import 'widget/single_address.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({super.key});
