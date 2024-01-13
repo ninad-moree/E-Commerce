@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../product_review/product_review.dart';
 import 'widgets/bottom_add_to_cart.dart';
 import 'widgets/product_attribute.dart';
 import 'widgets/product_image_slider.dart';
@@ -85,7 +88,9 @@ class ProductDetailScreen extends StatelessWidget {
                         showActionButton: false,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => Get.to(
+                          () => const ProductReviewScreen(),
+                        ),
                         icon: const Icon(
                           Iconsax.arrow_right_3,
                           size: 18,
