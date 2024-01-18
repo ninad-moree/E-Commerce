@@ -10,6 +10,7 @@ import '../../../../common/widgets/listtiles/user_profile_tile.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../shop/screens/orders/orders.dart';
 import '../address/address.dart';
 import '../profile/profile.dart';
 
@@ -78,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.bag_tick,
                     title: 'My orders',
                     subtitle: 'In Progress and Completed Orders',
-                    onTap: () {},
+                    onTap: () => Get.to(() => const OrdersScreen()),
                   ),
                   SettingsMenuTile(
                     icon: Iconsax.bank,
