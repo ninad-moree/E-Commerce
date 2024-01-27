@@ -33,9 +33,6 @@ class SignupForm extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: TTexts.firstName,
                     prefixIcon: Icon(Iconsax.user),
-                    errorStyle: TextStyle(
-                      color: Colors.red,
-                    ),
                   ),
                 ),
               ),

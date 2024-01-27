@@ -32,6 +32,11 @@ class SignupController extends GetxController {
       // Check internet connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        Loaders.errorSnackBar(
+          title: 'No Connection',
+          message:
+              'Internet Connection is required to proceed further. Please check your connection and try again',
+        );
         return;
       }
 
