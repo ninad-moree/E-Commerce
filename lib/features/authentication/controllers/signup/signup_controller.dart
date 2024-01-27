@@ -1,13 +1,13 @@
-import 'package:e_commerce/data/repositories/authentication/authentication_repository.dart';
-import 'package:e_commerce/data/repositories/user/user_repository.dart';
-import 'package:e_commerce/features/authentication/models/user_model.dart';
-import 'package:e_commerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../data/repositories/authentication/authentication_repository.dart';
+import '../../../../data/repositories/user/user_repository.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/popups/full_screen_loader.dart';
 import '../../../../utils/popups/loaders.dart';
+import '../../models/user_model.dart';
+import '../../screens/signup/verify_email.dart';
 import 'network_manager.dart';
 
 class SignupController extends GetxController {
@@ -94,7 +94,9 @@ class SignupController extends GetxController {
       );
 
       // Move to verify email screen
-      Get.to(() => const VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(
+            email: email.text.trim(),
+          ));
     } catch (e) {
       FullScreenLoader.stopLoading();
 
