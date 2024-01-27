@@ -1,3 +1,7 @@
+import 'package:e_commerce/data/repositories/authentication/authentication_repository.dart';
+import 'package:e_commerce/data/repositories/user/user_repository.dart';
+import 'package:e_commerce/features/authentication/models/user_model.dart';
+import 'package:e_commerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +21,9 @@ class SignupController extends GetxController {
   final password = TextEditingController();
   final phoneNumber = TextEditingController();
 
+  final hidePassword = true.obs;
+  final privacyPolicy = true.obs;
+
   // form key for validation
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
@@ -32,6 +39,7 @@ class SignupController extends GetxController {
       // Check internet connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        FullScreenLoader.stopLoading();
         Loaders.errorSnackBar(
           title: 'No Connection',
           message:
@@ -42,12 +50,55 @@ class SignupController extends GetxController {
 
       // Form Validation
       if (!signupFormKey.currentState!.validate()) {
+        FullScreenLoader.stopLoading();
         return;
       }
-    } catch (e) {
-      Loaders.errorSnackBar(title: 'Oh Snap!!', message: e.toString());
-    } finally {
+
+      // Privacy Policy Not Checked
+      if (!privacyPolicy.value) {
+        Loaders.warningSnackBar(
+          title: 'Accept Privacy Policies',
+          message:
+              'In order to create an account, you must accept our privacy policy and terms of use',
+        );
+        return;
+      }
+
+      // Register user in the firebase authentication and save user data in firebase
+      final userCreds =
+          await AuthenticationRepository.instance.registerWithEmailAndPassword(
+        email.text.trim(),
+        password.text.trim(),
+      );
+
+      // Save authenticated data in the firestore
+      final newUser = UserModel(
+        id: userCreds.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        userName: userName.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.tr,
+        profilePicture: '',
+      );
+
+      final userRepository = Get.put(UserRepository());
+      await userRepository.saveUserRecord(newUser);
+
       FullScreenLoader.stopLoading();
+
+      // Show success message
+      Loaders.successSnackBar(
+        title: 'Congratulations',
+        message: 'Your account has been created. Verify email to continure',
+      );
+
+      // Move to verify email screen
+      Get.to(() => const VerifyEmailScreen());
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+
+      Loaders.errorSnackBar(title: 'Oh Snap!!', message: e.toString());
     }
   }
 }
