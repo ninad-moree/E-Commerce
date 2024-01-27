@@ -1,5 +1,15 @@
+import 'dart:developer';
 
 class TValidator {
+  static String? validateEmptyText(String? fieldName, String? value) {
+    if (value == null || value.isEmpty) {
+      log('empty text not allowed');
+      return "$fieldName can't be empty";
+    }
+
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Email is required.';
