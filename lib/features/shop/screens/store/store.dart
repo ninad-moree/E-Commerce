@@ -1,4 +1,3 @@
-import 'package:e_commerce/features/shop/screens/brands/all_brands.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -13,6 +12,7 @@ import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../brands/all_brands.dart';
 import 'widget/category_tab.dart';
 
 class StoreScreen extends StatelessWidget {

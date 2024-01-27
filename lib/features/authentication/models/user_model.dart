@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/utils/formatters/formatter.dart';
+
+import '../../../utils/formatters/formatter.dart';
 
 class UserModel {
   final String id;

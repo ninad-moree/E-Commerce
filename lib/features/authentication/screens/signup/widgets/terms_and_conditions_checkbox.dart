@@ -1,4 +1,3 @@
-import 'package:e_commerce/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,11 +5,10 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../controllers/signup/signup_controller.dart';
 
 class TermsAndConditionsCheckBox extends StatelessWidget {
-  const TermsAndConditionsCheckBox({
-    super.key,
-  });
+  const TermsAndConditionsCheckBox({super.key});
 
   @override
   Widget build(BuildContext context) {

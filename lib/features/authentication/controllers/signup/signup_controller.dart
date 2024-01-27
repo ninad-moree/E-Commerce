@@ -8,7 +8,7 @@ import '../../../../utils/popups/full_screen_loader.dart';
 import '../../../../utils/popups/loaders.dart';
 import '../../models/user_model.dart';
 import '../../screens/signup/verify_email.dart';
-import 'network_manager.dart';
+import '../../../../utils/helpers/network_manager.dart';
 
 class SignupController extends GetxController {
   //dont need to create again and again
