@@ -47,6 +47,7 @@ class ForgetPasswordController extends GetxController {
         message: 'Email Link Sent to Reset Your Password'.tr,
       );
 
+      // Redirect to RestePassword Screen
       Get.to(() => ResetPasswordScreen(email: email.text.trim()));
     } catch (e) {
       FullScreenLoader.stopLoading();

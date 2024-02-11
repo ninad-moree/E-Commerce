@@ -74,7 +74,9 @@ class AuthenticationRepository extends GetxController {
       String email, String password) async {
     try {
       return await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

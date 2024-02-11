@@ -99,6 +99,7 @@ class LoginController extends GetxController {
 
       FullScreenLoader.stopLoading();
 
+      // Redirecting To The Screen
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       FullScreenLoader.stopLoading();
