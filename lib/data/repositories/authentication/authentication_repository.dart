@@ -26,11 +26,11 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() async {
     FlutterNativeSplash.remove();
-    await screenRedirect();
+    screenRedirect();
   }
 
   // function to share relevant screen
-  screenRedirect() async {
+  void screenRedirect() async {
     final user = _auth.currentUser;
 
     if (user != null) {
