@@ -13,7 +13,7 @@ class SocialButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* u can drectly call the class name if not using the  GetX package */
+    /* u can directly call the class name if not using the  GetX package */
     final controller = Get.put(LoginController());
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
