@@ -1,5 +1,3 @@
-import 'package:e_commerce/features/personalization/screens/profile/profile.dart';
-import 'package:e_commerce/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +5,8 @@ import '../../../data/repositories/user/user_repository.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
+import '../../../utils/popups/loaders.dart';
+import '../screens/profile/profile.dart';
 import 'user_controller.dart';
 
 class UpdateNameController extends GetxController {
