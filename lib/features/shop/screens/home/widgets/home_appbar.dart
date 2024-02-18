@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
+import '../../../../../common/widgets/loaders/shimmer.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../../personalization/controllers/user_controller.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -14,6 +17,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
+    final controller = Get.put(UserController());
 
     return CustomAppBar(
       title: Column(
@@ -26,13 +30,19 @@ class HomeAppBar extends StatelessWidget {
                 .labelMedium!
                 .apply(color: darkMode ? TColors.white : TColors.black),
           ),
-          Text(
-            TTexts.homeAppbarSubTitle,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .apply(color: darkMode ? TColors.white : TColors.black),
-          ),
+          Obx(() {
+            if (controller.profileLoading.value) {
+              return const ShimmerEffect(width: 80, height: 15);
+            } else {
+              return Text(
+                controller.user.value.fullName,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .apply(color: darkMode ? TColors.white : TColors.black),
+              );
+            }
+          }),
         ],
       ),
       actions: [

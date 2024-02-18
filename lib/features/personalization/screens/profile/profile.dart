@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
@@ -6,6 +7,8 @@ import '../../../../common/widgets/images/circular_image.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../controllers/user_controller.dart';
+import 'change_name.dart';
 import 'widget/profile_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,6 +16,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
+
     return Scaffold(
       appBar: const CustomAppBar(
         showBackArrow: true,
@@ -54,12 +59,12 @@ class ProfileScreen extends StatelessWidget {
 
               ProfileMenu(
                 title: 'Name',
-                value: 'Ninad More',
-                onPressed: () {},
+                value: controller.user.value.fullName,
+                onPressed: () => Get.to(() => const ChangeName()),
               ),
               ProfileMenu(
                 title: 'Username',
-                value: 'Kaneki18',
+                value: controller.user.value.userName,
                 onPressed: () {},
               ),
 
@@ -75,18 +80,18 @@ class ProfileScreen extends StatelessWidget {
 
               ProfileMenu(
                 title: 'User ID',
-                value: '1833',
+                value: controller.user.value.id,
                 onPressed: () {},
                 icon: Iconsax.copy,
               ),
               ProfileMenu(
                 title: 'E-Mail',
-                value: 'ninad@gmail.com',
+                value: controller.user.value.email,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Phone Number',
-                value: '78******99',
+                value: controller.user.value.phoneNumber,
                 onPressed: () {},
               ),
               ProfileMenu(
