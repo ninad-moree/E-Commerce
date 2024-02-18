@@ -1,3 +1,5 @@
+import 'package:e_commerce/features/personalization/screens/profile/profile.dart';
+import 'package:e_commerce/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +37,39 @@ class UpdateNameController extends GetxController {
       );
 
       final isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) {}
-    } catch (e) {}
+      if (!isConnected) {
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+      if (!updateUserNameFormKey.currentState!.validate()) {
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update Users FirstName & LastName in the Firestore
+      Map<String, dynamic> name = {
+        'FirstName': firstName.text.trim(),
+        'LastName': lastName.text.trim()
+      };
+
+      await userRepository.updateSingleField(name);
+
+      // Update the Rx USer Value
+      userController.user.value.firstName = firstName.text.trim();
+      userController.user.value.lastName = lastName.text.trim();
+
+      FullScreenLoader.stopLoading();
+
+      Loaders.successSnackBar(
+        title: 'Congratulations',
+        message: 'Your Name has been updated successfully',
+      );
+
+      Get.off(() => const ProfileScreen());
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
   }
 }
