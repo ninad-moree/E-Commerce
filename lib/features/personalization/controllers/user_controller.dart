@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../data/repositories/user/user_repository.dart';
@@ -20,6 +21,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
@@ -48,31 +50,39 @@ class UserController extends GetxController {
   // Save user record from any registration provider
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
-      if (userCredential != null) {
-        final nameParts =
-            UserModel.nameparts(userCredential.user!.displayName ?? '');
-        final userName =
-            UserModel.genrateUserName(userCredential.user!.displayName ?? '');
+      // refresh user record
+      /* first update Rx User and then check if user data is already stored. If not store new data */
+      await fetchUserRecord();
 
-        // Map Data
-        final user = UserModel(
-          id: userCredential.user!.uid,
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          userName: userName,
-          email: userCredential.user!.email ?? '',
-          phoneNumber: userCredential.user!.phoneNumber ?? '',
-          profilePicture: userCredential.user!.photoURL ?? '',
-        );
+      // if no record exists
+      if (user.value.id.isEmpty) {
+        if (userCredential != null) {
+          final nameParts =
+              UserModel.nameparts(userCredential.user!.displayName ?? '');
+          final userName =
+              UserModel.genrateUserName(userCredential.user!.displayName ?? '');
 
-        // Save User Data
-        await userRepository.saveUserRecord(user);
+          // Map Data
+          final user = UserModel(
+            id: userCredential.user!.uid,
+            firstName: nameParts[0],
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            userName: userName,
+            email: userCredential.user!.email ?? '',
+            phoneNumber: userCredential.user!.phoneNumber ?? '',
+            profilePicture: userCredential.user!.photoURL ?? '',
+          );
+
+          // Save User Data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       Loaders.warningSnackBar(
         title: 'Data Not Saved',
-        message:
-            'Something went wrong while saving your information. You can re-save your data in your profile',
+        message: 'Error: $e',
+        // 'Something went wrong while saving your information. You can re-save your data in your profile',
       );
     }
   }
@@ -157,6 +167,42 @@ class UserController extends GetxController {
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
+    }
+  }
+
+  // Upload User Image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 70,
+        maxHeight: 512,
+        maxWidth: 512,
+      );
+
+      if (image != null) {
+        imageUploading.value = true;
+        // uploading the image
+        final imageUrl = await userRepository.uploadImage(
+          'Users/Images/Profile/',
+          image,
+        );
+
+        // update the user image record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        Loaders.successSnackBar(
+          title: 'Congratulations',
+          message: 'Profile Picture Updated',
+        );
+      }
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Oh Snap', message: 'Error: $e');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }
