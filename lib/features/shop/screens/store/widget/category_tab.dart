@@ -6,9 +6,15 @@ import '../../../../../common/widgets/products/product_card/product_card_vertica
 import '../../../../../common/widgets/texts/section_heading.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../models/category_model.dart';
 
 class CategoryTab extends StatelessWidget {
-  const CategoryTab({super.key});
+  const CategoryTab({
+    super.key,
+    required this.category,
+  });
+
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {

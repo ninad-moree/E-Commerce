@@ -12,6 +12,7 @@ import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../../controllers/category_controller.dart';
 import '../brands/all_brands.dart';
 import 'widget/category_tab.dart';
 
@@ -21,9 +22,10 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
+    final categories = CategoryController.instance.featuredCategories;
 
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: CustomAppBar(
           title: Text(
@@ -86,26 +88,34 @@ class StoreScreen extends StatelessWidget {
                 ),
 
                 // Tabs bar
-                bottom: const TabsBar(
-                  tabs: [
-                    Tab(child: Text('Sports')),
-                    Tab(child: Text('Furniture')),
-                    Tab(child: Text('Electronics')),
-                    Tab(child: Text('Clothes')),
-                    Tab(child: Text('Cosmetics')),
-                  ],
+                bottom: TabsBar(
+                  tabs: categories
+                      .map((category) => Tab(
+                            child: Text(category.name),
+                          ))
+                      .toList(),
+                  // tabs: [
+                  //   Tab(child: Text('Sports')),
+                  //   Tab(child: Text('Furniture')),
+                  //   Tab(child: Text('Electronics')),
+                  //   Tab(child: Text('Clothes')),
+                  //   Tab(child: Text('Cosmetics')),
+                  // ],
                 ),
               ),
             ];
           },
-          body: const TabBarView(
-            children: [
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-            ],
+          body: TabBarView(
+            children: categories
+                .map((element) => CategoryTab(category: element))
+                .toList(),
+            // children: [
+            //   CategoryTab(),
+            //   CategoryTab(),
+            //   CategoryTab(),
+            //   CategoryTab(),
+            //   CategoryTab(),
+            // ],
           ),
         ),
       ),
